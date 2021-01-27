@@ -1,13 +1,25 @@
 <template>
   <div class="movie_body">
     <ul>
-      <li v-for="data in 10" :key="data">
+      <!-- <li v-for="data in 10" :key="data">
         <div class="pic_show"><img src="/images/龙猫1.jpg" alt=""></div>
         <div class="info_list">
           <h2>无名之辈</h2>
           <p><span class="person">17746</span> 人想看</p>
           <p>主演：陈建弗,肉食性,发福利,肉食性</p>
           <p>2018-11-30上映</p>
+        </div>
+        <div class="btn_pre">
+          预售
+        </div>
+      </li> -->
+      <li v-for="item in comingList" :key="item.id">
+        <div class="pic_show"><img :src="item | setHW('128.180')" alt=""></div>
+        <div class="info_list">
+          <h2>{{item.nm}}</h2><img v-if="item.version" src="@/assets/maxs.png" alt="小图标" title="小图标">
+          <p><span class="person">{{item.wish}}</span> 人想看</p>
+          <p>主演：{{item.star}}</p>
+          <p>{{item.rt}}上映</p>
         </div>
         <div class="btn_pre">
           预售
@@ -19,7 +31,20 @@
 
 <script>
 export default {
-  name:'ComingSoon'
+  name:'ComingSoon',
+  data(){
+    return {
+      comingList:[]
+    }
+  },
+  mounted(){
+    this.axios.get('/api/movieComingList?cityId=10').then((res)=>{
+      var msg=res.data.msg;
+      if(msg==='ok'){
+        this.comingList=res.data.data.comingList;
+      }
+    })
+  }
 };
 </script>
 
