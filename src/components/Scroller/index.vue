@@ -15,7 +15,7 @@ export default {
       default:function(){}
     },
     handleTouchEnd:{
-      type:Funtion,
+      type:Function,
       default:function(){}
     }
   },

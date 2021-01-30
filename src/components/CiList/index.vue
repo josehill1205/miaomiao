@@ -1,6 +1,6 @@
 <template>
   <div class="cinema_body">
-    <Loading v-if="isLoading" />
+    <Loading v-if="false" />
     <Scroller v-else>
       <ul>
         <!-- <li>
@@ -73,10 +73,10 @@ export default {
   filters:{
     formatCard(key){
       var card=[
-        { key:'allowRefund' ,value="改签"},
-        { key:'endorse' ,value="退"},
-        {key:'sell',value="折扣卡"},
-        { key:'sneck' ,value="小吃"},
+        { key:'allowRefund' ,value:"改签"},
+        { key:'endorse' ,value:"退"},
+        {key:'sell',value:"折扣卡"},
+        { key:'sneck' ,value:"小吃"},
       ];
       for(var i=0;i<card.length;i++){
         if(card[i].key===key){
@@ -87,10 +87,10 @@ export default {
     },
     classCard(key){
       var card=[
-        { key:'allowRefund' ,value="bl"},
-        { key:'endorse' ,value="bl"},
-        {key:'sell',value="or"},
-        { key:'sneck' ,value="or"},
+        { key:'allowRefund' ,value:"bl"},
+        { key:'endorse' ,value:"bl"},
+        {key:'sell',value:"or"},
+        { key:'sneck' ,value:"or"},
       ];
       for(var i=0;i<card.length;i++){
         if(card[i].key===key){

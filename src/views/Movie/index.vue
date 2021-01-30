@@ -4,8 +4,8 @@
     <div id="content">
       <div class="movie_menu">
         <router-link tag="div" to="/movie/city" class="city_name"
-          ><span>{{ $store.stare.city.nm }}</span
-          ><i class="iconfont"></i
+          ><span>{{ '北京' || $store.stare.city.nm }}</span
+          ><i class="iconfont icon-lower-triangle"></i
         ></router-link>
         <div class="hot_swtich">
           <router-link tag="div" to="/movie/nowplaying" class="hot_item"
@@ -24,6 +24,7 @@
       </keep-alive>
     </div>
     <TabBar />
+    <router-view name="detail" />
   </div>
 </template>
 
@@ -39,28 +40,28 @@ export default {
     TabBar,
   },
   mounted() {
-    setTimeout(() => {
-      this.axios.get("/api/getLocation").then(() => {
-        var msg = res.data.msg;
-        if (msg === "ok") {
+    // setTimeout(() => {
+    //   this.axios.get("/api/getLocation").then(() => {
+    //     var msg = res.data.msg;
+    //     if (msg === "ok") {
 
-          var nm = res.data.data.nm;
-          var id = res.data.data.id;
-          if( this.$store.state.city.id == id){ return; }
-          messageBox({
-            title: "定位",
-            content: nm,
-            cancel: "取消",
-            ok: "切换定位",
-            handleOk() {
-              window.localStorage.setItem('nowNm',nm);
-              window.localStorage.setItem('nowId',id);
-              window.location.reload();
-            },
-          });
-        }
-      });
-    }, 3000);
+    //       var nm = res.data.data.nm;
+    //       var id = res.data.data.id;
+    //       if( this.$store.state.city.id == id){ return; }
+    //       messageBox({
+    //         title: "定位",
+    //         content: nm,
+    //         cancel: "取消",
+    //         ok: "切换定位",
+    //         handleOk() {
+    //           window.localStorage.setItem('nowNm',nm);
+    //           window.localStorage.setItem('nowId',id);
+    //           window.location.reload();
+    //         },
+    //       });
+    //     }
+    //   });
+    // }, 3000);
   },
 };
 </script>
