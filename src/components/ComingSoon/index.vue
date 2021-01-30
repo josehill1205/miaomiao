@@ -1,6 +1,6 @@
 <template>
   <div class="movie_body">
-    <Loading v-if="isLoading"/>
+    <Loading v-if="false"/>
     <Scroller v-else>
       <ul>
         <!-- <li v-for="data in 10" :key="data">
@@ -16,9 +16,9 @@
           </div>
         </li> -->
         <li v-for="item in comingList" :key="item.id">
-          <div class="pic_show"><img :src="item | setHW('128.180')" alt=""></div>
+          <div class="pic_show" @tap="handleToDetail(item.id)"><img :src="item | setHW('128.180')" alt=""></div>
           <div class="info_list">
-            <h2>{{item.nm}}</h2><img v-if="item.version" src="@/assets/maxs.png" alt="小图标" title="小图标">
+            <h2 @tap="handleToDetail(item.id)">{{item.nm}}</h2><img v-if="item.version" src="@/assets/maxs.png" alt="小图标" title="小图标">
             <p><span class="person">{{item.wish}}</span> 人想看</p>
             <p>主演：{{item.star}}</p>
             <p>{{item.rt}}上映</p>
@@ -54,6 +54,11 @@ export default {
         this.prevCityId=cityId;
       }
     })
+  },
+  methods:{
+    handleToDetail(movieId){
+      this.$router.push('/movie/detail/2/'+movieId)
+    }
   }
 };
 </script>

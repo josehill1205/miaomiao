@@ -20,7 +20,7 @@ export var messageBox = (function () {
             defaults[attr] = opts[attr];
         }
 
-        new vm = new MyComponent({
+        var vm = new MyComponent({
             el: document.createElement('div'),
             data: {
                 title: defaults.title,

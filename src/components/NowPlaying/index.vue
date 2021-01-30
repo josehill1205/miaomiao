@@ -1,12 +1,12 @@
 <template>
   <div class="movie_body" ref="movie_body">
-    <Loading v-if="isLoading"/>
+    <Loading v-if="false"/>
     <Scroller v-else :handleToScroll="handleToScroll" :handleToScrollEnd="handleToScrollEnd">
       <ul>
-        <!-- <li v-for="data in 10" :key="data">
-          <div class="pic_show"><img src="/images/龙猫1.jpg" alt=""></div>
+        <li v-for="data in 10" :key="data">
+          <div class="pic_show" @tap="handleToDetail(item.id)"><img src="/images/龙猫1.jpg" alt=""></div>
           <div class="info_list">
-            <h2>无名之辈</h2>
+            <h2 @tap="handleToDetail(item.id)">无名之辈</h2>
             <p>观众评<span class="grade">9.2</span></p>
             <p>主演：陈建弗,肉食性,发福利,肉食性</p>
             <p>今天55家影院放映607场</p>
@@ -14,8 +14,8 @@
           <div class="btn_mall">
             购票
           </div>
-        </li> -->
-        <li class="pullDown">{{ pullDownMsg }}</li>
+        </li>
+        <!-- <li class="pullDown">{{ pullDownMsg }}</li>
         <li v-for="item in movieList" :key="item.id">
           <div class="pic_show" @tap="handleToDetail">
             <img :src="item.img | setWH('128.180')" alt="" />
@@ -37,14 +37,14 @@
             <p>{{ item.showInfo }}</p>
           </div>
           <div class="btn_mall">购票</div>
-        </li>
+        </li> -->
       </ul>
     </Scroller>
   </div>
 </template>
 
 <script>
-//import BScroll from "better-scroll";
+// import BScroll from "better-scroll";
 
 export default {
   name: "NowPlaying",
@@ -99,8 +99,10 @@ export default {
     });
   },
   methods: {
-    handleToDetail() {
-      console.log("handleToDetail");
+    handleToDetail(movieId) {
+      // console.log("handleToDetail",id);
+      this.$router.push('/movie/detail/1/'+mocieId)
+
     },
     handleToScroll(pos) {
       if (pos.y > 30) {

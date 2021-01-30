@@ -70,7 +70,7 @@
       </ul>
     </div> -->
     <div class="city_list">
-      <Loading v-if="isLoading" />
+      <Loading v-if="false" />
       <Scroller v-else ref="city_List">
         <div>
           <div class="city_hot">
@@ -140,37 +140,41 @@ export default {
               isHot: 1,
               py: "shanghai",
             },
-          ],
-          isLoading: true,
+          ]
         },
       },
+      //  isLoading: true
+      isLoading: false //临时
     };
   },
   mounted() {
     var cityList = window.localStorage.getItem("cityList");
     var hotList = window.localStorage.getItem("hotList");
-
+    
+    //临时替代
+      var cityList= this.cities;
+      var hotList=this.cities;
     if (cityList && hotList) {
       this.cityList = JSON.parse(cityList);
       this.hotList = JSON.parse(hotList);
       this.isLoading = false;
     } else {
-      this.axios.get("/api/cityList").then((res) => {
-        // console.log(res)
-        // var msg=res.data.msg;
-        var msg = this.olddata;
-        if (msg === "ok") {
-          this.isLoading = false;
-          var data = res.data.data.cities;
-          // [ { index:'A',list:[{ nm:'阿城',id:123 }] } ]
-          // this.formatCityList(cities);
-          var { cityList, hotList } = this.formatCityList(cities);
-          this.cityList = cityList;
-          this.hotList = hotList;
-          window.localStorage.setItem("cityList", JSON.stringify(cityList));
-          window.localStorage.setItem("hotList", JSON.stringify(hotList));
-        }
-      });
+      // this.axios.get("/api/cityList").then((res) => {
+      //   // console.log(res)
+      //   // var msg=res.data.msg;
+      //   var msg = this.olddata;
+      //   if (msg === "ok") {
+      //     this.isLoading = false;
+      //     var data = res.data.data.cities;
+      //     // [ { index:'A',list:[{ nm:'阿城',id:123 }] } ]
+      //     // this.formatCityList(cities);
+      //     var { cityList, hotList } = this.formatCityList(cities);
+      //     this.cityList = cityList;
+      //     this.hotList = hotList;
+      //     window.localStorage.setItem("cityList", JSON.stringify(cityList));
+      //     window.localStorage.setItem("hotList", JSON.stringify(hotList));
+      //   }
+      // });
     }
   },
   methods: {
